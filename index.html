@@ -9,7 +9,7 @@
   <meta property="og:title" content="Persicar Service · Autofficina">
   <meta property="og:description" content="Meccanica, diagnosi e manutenzione auto a San Giovanni in Persiceto.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/logo.png">
+  <meta property="og:image" content="assets/img/hero.webp">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,8 @@
     "name": "Persicar Service Autofficina",
     "image": "assets/img/logo.png",
     "telephone": "+39 051 687 1521",
+    "email": "officinapersicarservice@gmail.com",
+    "sameAs": ["https://www.facebook.com/PersicarService/"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Via Cento, 60",
@@ -57,7 +59,7 @@
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__media" aria-hidden="true">
-        <img data-img="hero" alt="" fetchpriority="high">
+        <img data-img="hero" src="assets/img/hero.webp" alt="" fetchpriority="high">
       </div>
       <div class="hero__inner">
         <p class="status" id="status" aria-live="polite"><span class="status__dot"></span><span class="status__text">Orari: lun–ven</span></p>
@@ -65,7 +67,7 @@
           <span class="line">La tua auto,</span>
           <span class="line">in mani <em>esperte</em>.</span>
         </h1>
-        <p class="hero__lead">Autofficina a San Giovanni in Persiceto. Tagliandi, diagnosi, freni e gomme con prezzi chiari e tempi rispettati.</p>
+        <p class="hero__lead">Officina multimarca ed elettrauto a San Giovanni in Persiceto. Tagliandi, diagnosi, freni e gomme con prezzi chiari e tempi rispettati.</p>
         <div class="hero__cta">
           <a class="btn btn--solid" href="tel:+390516871521">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
@@ -90,7 +92,7 @@
       <div class="section__head">
         <p class="eyebrow">Cosa facciamo</p>
         <h2 id="servizi-title">Manutenzione completa,<br>senza sorprese.</h2>
-        <p class="section__lead">Ti spieghiamo cosa serve, cosa può aspettare e quanto costa, prima di mettere mano all'auto.</p>
+        <p class="section__lead">Officina multimarca: lavoriamo su auto di tutte le marche. Ti spieghiamo cosa serve, cosa può aspettare e quanto costa, prima di mettere mano all'auto.</p>
       </div>
       <ul class="cards">
         <li class="card reveal">
@@ -99,7 +101,7 @@
         </li>
         <li class="card reveal">
           <div class="card__img"><img data-img="diagnosi" alt="Tablet di diagnosi collegato alla presa dell'auto" loading="lazy"></div>
-          <div class="card__body"><span class="card__num">02</span><h3>Diagnosi elettronica</h3><p>Lettura centraline e spie accese: troviamo la causa prima di sostituire i pezzi.</p></div>
+          <div class="card__body"><span class="card__num">02</span><h3>Elettrauto e diagnosi</h3><p>Impianto elettrico, centraline e spie accese: troviamo la causa prima di sostituire i pezzi.</p></div>
         </li>
         <li class="card reveal">
           <div class="card__img"><img data-img="freni" alt="Disco freno e pinza rossa" loading="lazy"></div>
@@ -107,7 +109,7 @@
         </li>
         <li class="card reveal">
           <div class="card__img"><img data-img="gomme" alt="Pneumatici e cerchio su smontagomme" loading="lazy"></div>
-          <div class="card__body"><span class="card__num">04</span><h3>Gomme</h3><p>Cambio stagionale, montaggio ed equilibratura, riparazione forature.</p></div>
+          <div class="card__body"><span class="card__num">04</span><h3>Vendita gomme</h3><p>Pneumatici nuovi, cambio stagionale, montaggio ed equilibratura, riparazione forature.</p></div>
         </li>
         <li class="card reveal">
           <div class="card__img"><img data-img="batteria" alt="Test della batteria nel vano motore" loading="lazy"></div>
@@ -197,10 +199,13 @@
         </table>
         <address>
           <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Cento+60+40017+San+Giovanni+in+Persiceto+BO" target="_blank" rel="noopener">Via Cento, 60 · 40017 San Giovanni in Persiceto (BO)</a>
-          <a href="tel:+390516871521">051 687 1521</a>
+          <a href="tel:+390516871521">Tel. 051 687 1521</a>
+          <a href="tel:+393667212576">Cell. 366 721 2576</a>
+          <a href="mailto:officinapersicarservice@gmail.com">officinapersicarservice@gmail.com</a>
         </address>
         <div class="hero__cta">
           <a class="btn btn--solid" href="tel:+390516871521">Chiama ora</a>
+          <a class="btn btn--ghost js-wa" href="#" data-wa-text="Ciao, vorrei un preventivo per la mia auto.">WhatsApp</a>
           <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Via+Cento+60+40017+San+Giovanni+in+Persiceto+BO" target="_blank" rel="noopener">Indicazioni stradali</a>
         </div>
       </div>
@@ -212,8 +217,9 @@
 
   <footer class="footer">
     <img src="assets/img/logo.png" alt="Persicar Service" width="1067" height="251" loading="lazy">
-    <p>Persicar Service Autofficina S.a.s. · Via Cento 60, 40017 San Giovanni in Persiceto (BO) · P.IVA <span class="todo">da inserire</span></p>
-    <p class="footer__small">© <span id="year">2026</span> Persicar Service · Immagini illustrative generate con IA</p>
+    <p>Persicar Service Autofficina · Via Cento 60, 40017 San Giovanni in Persiceto (BO) · Tel. 051 687 1521 · <a href="https://www.facebook.com/PersicarService/" target="_blank" rel="noopener">Facebook</a></p>
+    <p class="footer__small">P.IVA <span class="todo">da inserire</span></p>
+    <p class="footer__small">© <span id="year">2026</span> Persicar Service · Immagini illustrative</p>
   </footer>
 
   <!-- Barra contatti mobile -->

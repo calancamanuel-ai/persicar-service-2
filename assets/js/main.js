@@ -6,22 +6,21 @@
    * WHATSAPP: numero in formato internazionale senza "+" e spazi (es. "393331234567").
    * Lascialo vuoto finché non è confermato: i pulsanti WhatsApp restano nascosti.
    */
-  var WHATSAPP = "";
+  var WHATSAPP = "393667212576";
 
   /* Immagini illustrative generate con Higgsfield.
-   * Per usare foto locali, metti i file in assets/img/ e sostituisci l'URL con "assets/img/nome.webp". */
-  var CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3LQJY9oKHwdWiFyDsrmXp5hBChK/";
+   * Per usare foto reali, sostituisci i file in assets/img/ mantenendo lo stesso nome. */
   var IMAGES = {
-    hero:     CDN + "hf_20261103_205111_e3f50db9-1d79-4008-80ca-a12ebde0a238.png",
-    olio:     CDN + "hf_20261103_205111_f520a6a2-bf39-4a7a-938e-d651d0bf08c2_min.webp",
-    diagnosi: CDN + "hf_20261103_205113_ba133e10-9366-454f-bdeb-1c305b62ec85_min.webp",
-    freni:    CDN + "hf_20261103_205135_d7d17209-d825-41e3-be6e-e33dd7fe848b_min.webp",
-    gomme:    CDN + "hf_20261103_205112_051283db-2f0e-4146-bbba-53ce5b888b2d_min.webp",
-    batteria: CDN + "hf_20261103_205135_8274c142-7623-4e23-b4d6-2b66c01d118a_min.webp",
-    clima:    CDN + "hf_20261103_205114_16b3e164-9709-41e4-aa12-3a06aa9872d2_min.webp",
-    attrezzi: CDN + "hf_20261103_205112_2abb98b3-11e0-47e8-9078-de14ef4ca556_min.webp",
-    motore:   CDN + "hf_20261103_205113_decdbeec-1237-4bc4-b42e-7aa67d9c5013_min.webp",
-    esterno:  CDN + "hf_20261103_205113_96aaef18-ef66-4394-80e7-8f9fc743d0a3_min.webp"
+    hero: "assets/img/hero.webp",
+    olio: "assets/img/olio.webp",
+    diagnosi: "assets/img/diagnosi.webp",
+    freni: "assets/img/freni.webp",
+    gomme: "assets/img/gomme.webp",
+    batteria: "assets/img/batteria.webp",
+    clima: "assets/img/clima.webp",
+    attrezzi: "assets/img/attrezzi.webp",
+    motore: "assets/img/motore.webp",
+    esterno: "assets/img/esterno.webp"
   };
 
   document.querySelectorAll("img[data-img]").forEach(function (img) {

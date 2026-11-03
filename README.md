@@ -15,7 +15,7 @@ python3 -m http.server 8000
 Poi apri http://localhost:8000.
 
 ## Da completare
-- Numero WhatsApp: `WHATSAPP` in `assets/js/main.js` (finché è vuoto, i pulsanti WhatsApp restano nascosti)
+- Verificare che il cellulare 366 721 2576 sia su WhatsApp (`WHATSAPP` in `assets/js/main.js`)
 - P.IVA nel footer
 - Conferma di orari ed elenco servizi
-- Foto reali dell'officina: sostituire gli URL in `IMAGES` (`assets/js/main.js`) con file in `assets/img/`
+- Foto reali dell'officina: sostituire i file in `assets/img/` mantenendo lo stesso nome
