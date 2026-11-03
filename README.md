@@ -16,3 +16,9 @@ Poi apri http://localhost:8000.
 
 ## Da completare
 - Foto reali dell'officina: sostituire i file in `assets/img/` mantenendo lo stesso nome
+
+## Versione "cinema" (`cinema/`)
+Pagina separata e animata: scorrendo, un video generato con Higgsfield (5 immagini chiave e 4 transizioni MiniMax) viene riprodotto fotogramma per fotogramma su un canvas, con schede e punti sui reparti sopra.
+- `cinema/frames/desk` (1280 px, circa 9 MB) e `cinema/frames/mob` (1024 px, circa 7 MB): 236 fotogrammi WebP ciascuno
+- `cinema/cinema.js`: racconto in `STEPS`, numero di fotogrammi in `FRAME_COUNTS`
+- Nella terza transizione ho tagliato i fotogrammi in cui compariva il logo di una casa automobilistica, sostituendoli con una dissolvenza.

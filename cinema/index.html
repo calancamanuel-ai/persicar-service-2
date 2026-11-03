@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Persicar Service · Entra in officina</title>
+  <meta name="description" content="Entra in officina con Persicar Service: officina multimarca, gommista, elettrauto e ricarica climatizzatori in Via Cento 60 a San Giovanni in Persiceto (BO).">
+  <meta name="theme-color" content="#06070a">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cinema.css">
+</head>
+<body>
+  <canvas id="film" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="loader" id="loader" aria-hidden="true"><span class="loader__bar" id="loader-bar"></span></div>
+
+  <header class="nav">
+    <a href="#top" class="nav__logo" aria-label="Persicar Service, torna all'inizio"><img src="../assets/img/logo.png" alt="Persicar Service" width="1067" height="251"></a>
+    <div class="nav__right">
+      <a class="nav__link" href="../index.html">Versione classica</a>
+      <a class="btn btn--small btn--solid" href="tel:+390516871521">051 687 1521</a>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="Capitoli">
+    <button data-chapter="0"><span>Esterno</span></button>
+    <button data-chapter="1"><span>Officina</span></button>
+    <button data-chapter="2"><span>Reparti</span></button>
+    <button data-chapter="3"><span>Freni</span></button>
+    <button data-chapter="4"><span>Diagnosi</span></button>
+  </nav>
+
+  <main id="top">
+    <!-- Racconto: altezza impostata da JS -->
+    <section class="story" id="story" aria-label="Visita guidata dell'officina">
+      <div class="layer layer--hero" data-show="hero">
+        <p class="status" id="status"><span class="status__dot"></span><span class="status__text">Lun–ven</span></p>
+        <h1 class="hero__title"><span>La tua auto,</span><span>in mani <em>esperte</em>.</span></h1>
+        <p class="hero__lead">Officina multimarca a San Giovanni in Persiceto. Scorri ed entra.</p>
+        <div class="cta">
+          <a class="btn btn--solid" href="tel:+390516871521">Chiama ora</a>
+          <a class="btn btn--ghost js-wa" href="#" data-wa-text="Ciao, vorrei un preventivo per la mia auto.">Scrivi su WhatsApp</a>
+        </div>
+        <p class="scrollhint" aria-hidden="true"><span></span>Scorri</p>
+      </div>
+
+      <div class="layer layer--card layer--right" data-show="inside">
+        <p class="card__kicker">Via Cento 60</p>
+        <h2>Dentro l'officina</h2>
+        <p>Auto e veicoli commerciali leggeri di tutte le marche. Ponte sollevatore, attrezzatura di diagnosi e un reparto gommista.</p>
+        <dl class="card__facts"><div><dt>4,8★</dt><dd>86 recensioni Google</dd></div><div><dt>Multimarca</dt><dd>auto e commerciali</dd></div></dl>
+      </div>
+
+      <div class="layer layer--map" data-show="map">
+        <div class="map__title">
+          <p class="card__kicker">I reparti</p>
+          <h2>Tutto sotto lo stesso tetto.</h2>
+        </div>
+        <button class="spot" data-spot="0" data-x="0.20" data-y="0.43"><i></i><span><b>Gommista</b>Vendita, cambio stagionale, equilibratura</span></button>
+        <button class="spot" data-spot="1" data-x="0.50" data-y="0.37"><i></i><span><b>Meccanica</b>Tagliandi, freni, sospensioni</span></button>
+        <button class="spot" data-spot="2" data-x="0.74" data-y="0.35"><i></i><span><b>Elettrauto e diagnosi</b>Centraline, impianto elettrico, spie</span></button>
+        <button class="spot" data-spot="3" data-x="0.71" data-y="0.15"><i></i><span><b>Ricarica clima</b>Gas, perdite, igienizzazione</span></button>
+        <button class="spot" data-spot="4" data-x="0.27" data-y="0.60"><i></i><span><b>Accettazione</b>Preventivo chiaro prima di iniziare</span></button>
+      </div>
+
+      <div class="layer layer--card layer--left" data-show="brake">
+        <p class="card__kicker">Freni</p>
+        <h2>Disco, pastiglie, pinza.</h2>
+        <p>Misuriamo il disco a ogni tagliando e cambiamo solo quello che serve. Rumori o vibrazioni in frenata? Passa a farli controllare.</p>
+        <a class="btn btn--solid js-wa" href="tel:+390516871521" data-fallback="tel" data-wa-text="Ciao, vorrei far controllare i freni della mia auto.">Prenota un controllo</a>
+      </div>
+
+      <div class="layer layer--card layer--left" data-show="diag">
+        <p class="card__kicker">Elettrauto e diagnosi</p>
+        <h2>Prima la causa,<br>poi il ricambio.</h2>
+        <p>Spia accesa? Leggiamo le centraline e ti spieghiamo cosa c'è da fare, con un preventivo prima di iniziare.</p>
+        <div class="cta">
+          <a class="btn btn--solid" href="tel:+390516871521">Chiama ora</a>
+          <a class="btn btn--ghost js-wa" href="#" data-wa-text="Ciao, ho una spia accesa sull'auto.">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Finale -->
+    <section class="end" id="contatti" aria-labelledby="end-title">
+      <div class="end__inner">
+        <div>
+          <p class="card__kicker">Orari e contatti</p>
+          <h2 id="end-title">Ti aspettiamo<br>in Via Cento.</h2>
+          <address>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Cento+60+40017+San+Giovanni+in+Persiceto+BO" target="_blank" rel="noopener">Via Cento, 60 · 40017 San Giovanni in Persiceto (BO)</a>
+            <a href="tel:+390516871521">Tel. 051 687 1521</a>
+            <a href="tel:+393667212576">Cell. e WhatsApp 366 721 2576 <small>(su WhatsApp solo messaggi)</small></a>
+            <a href="mailto:officinapersicarservice@gmail.com">officinapersicarservice@gmail.com</a>
+          </address>
+          <div class="cta">
+            <a class="btn btn--solid" href="tel:+390516871521">Chiama ora</a>
+            <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Via+Cento+60+40017+San+Giovanni+in+Persiceto+BO" target="_blank" rel="noopener">Indicazioni stradali</a>
+          </div>
+        </div>
+        <table class="hours" aria-label="Orari di apertura">
+          <tbody>
+            <tr data-day="1"><th>Lunedì</th><td>8:30–12:30 · 14:30–18:15</td></tr>
+            <tr data-day="2"><th>Martedì</th><td>8:30–12:30 · 14:30–18:15</td></tr>
+            <tr data-day="3"><th>Mercoledì</th><td>8:30–12:30 · 14:30–18:15</td></tr>
+            <tr data-day="4"><th>Giovedì</th><td>8:30–12:30 · 14:30–18:15</td></tr>
+            <tr data-day="5"><th>Venerdì</th><td>8:30–12:30 · 14:30–18:15</td></tr>
+            <tr data-day="6"><th>Sabato</th><td>Chiuso</td></tr>
+            <tr data-day="0"><th>Domenica</th><td>Chiuso</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <footer class="footer">
+        <img src="../assets/img/logo.png" alt="Persicar Service" width="1067" height="251" loading="lazy">
+        <p>Persicar Service S.r.l.s. · Via Cento 60, 40017 San Giovanni in Persiceto (BO) · P.IVA 04045401207</p>
+        <p><a href="https://www.facebook.com/PersicarService/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/persicarservice/" target="_blank" rel="noopener">Instagram</a> · <a href="../index.html">Versione classica</a></p>
+        <p class="footer__small">Immagini e animazioni illustrative</p>
+      </footer>
+    </section>
+  </main>
+
+  <div class="mbar" aria-label="Contatti rapidi">
+    <a href="tel:+390516871521" class="mbar__call">Chiama</a>
+    <a href="#" class="mbar__wa js-wa" data-wa-text="Ciao, vorrei un preventivo per la mia auto.">WhatsApp</a>
+  </div>
+
+  <script src="../assets/vendor/lenis.min.js"></script>
+  <script src="cinema.js"></script>
+</body>
+</html>
