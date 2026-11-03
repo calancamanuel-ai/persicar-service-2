@@ -107,6 +107,9 @@ p { margin: 0; }
 .hero__title em { font-style: normal; background: linear-gradient(90deg, var(--green), #fff 55%, var(--red)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero__lead { max-width: 34ch; margin-top: 24px; font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: #d4d4d8; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero__note { flex-basis: 100%; font-size: 0.85rem; color: var(--muted); }
+address small { color: var(--muted); font-size: 0.85rem; }
+.footer a { color: var(--ink); }
 .hero__facts { list-style: none; padding: 28px 0 0; margin: 44px 0 0; display: flex; flex-wrap: wrap; gap: 20px 56px; border-top: 1px solid var(--line); }
 .hero__facts li { display: flex; flex-direction: column; gap: 2px; }
 .hero__facts strong { font: 600 1.15rem/1.2 var(--f-head); letter-spacing: 0.02em; }

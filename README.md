@@ -15,7 +15,5 @@ python3 -m http.server 8000
 Poi apri http://localhost:8000.
 
 ## Da completare
-- Verificare che il cellulare 366 721 2576 sia su WhatsApp (`WHATSAPP` in `assets/js/main.js`)
-- P.IVA nel footer
-- Conferma di orari ed elenco servizi
+- Orari: su WhatsApp il pomeriggio chiude alle 18:15, sul sito c'è 18:30 (`SLOTS` in `assets/js/main.js` e tabella in `index.html`)
 - Foto reali dell'officina: sostituire i file in `assets/img/` mantenendo lo stesso nome
