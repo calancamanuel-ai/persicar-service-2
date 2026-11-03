@@ -38,7 +38,7 @@
   });
 
   /* ---------- Aperto ora ---------- */
-  var SLOTS = [[8 * 60 + 30, 12 * 60 + 30], [14 * 60 + 30, 18 * 60 + 30]]; // lun–ven
+  var SLOTS = [[8 * 60 + 30, 12 * 60 + 30], [14 * 60 + 30, 18 * 60 + 15]]; // lun–ven
   function romeNow() {
     var parts = new Intl.DateTimeFormat("en-GB", {
       timeZone: "Europe/Rome", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false

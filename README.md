@@ -15,5 +15,4 @@ python3 -m http.server 8000
 Poi apri http://localhost:8000.
 
 ## Da completare
-- Orari: su WhatsApp il pomeriggio chiude alle 18:15, sul sito c'è 18:30 (`SLOTS` in `assets/js/main.js` e tabella in `index.html`)
 - Foto reali dell'officina: sostituire i file in `assets/img/` mantenendo lo stesso nome
