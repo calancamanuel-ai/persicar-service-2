@@ -10,21 +10,12 @@
 
   /* Immagini illustrative generate con Higgsfield.
    * Per usare foto reali, sostituisci i file in assets/img/ mantenendo lo stesso nome. */
-  var IMAGES = {
-    hero: "assets/img/hero.webp",
-    olio: "assets/img/olio.webp",
-    diagnosi: "assets/img/diagnosi.webp",
-    freni: "assets/img/freni.webp",
-    gomme: "assets/img/gomme.webp",
-    batteria: "assets/img/batteria.webp",
-    clima: "assets/img/clima.webp",
-    attrezzi: "assets/img/attrezzi.webp",
-    motore: "assets/img/motore.webp",
-    esterno: "assets/img/esterno.webp"
-  };
+  // Ogni data-img="nome" carica assets/img/nome.webp
+  var IMAGES = {};
 
   document.querySelectorAll("img[data-img]").forEach(function (img) {
-    var src = IMAGES[img.getAttribute("data-img")];
+    var name = img.getAttribute("data-img");
+    var src = IMAGES[name] || "assets/img/" + name + ".webp";
     if (src) img.src = src;
   });
 

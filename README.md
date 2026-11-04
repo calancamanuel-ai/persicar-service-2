@@ -15,7 +15,7 @@ python3 -m http.server 8000
 Poi apri http://localhost:8000.
 
 ## Da completare
-- Foto reali dell'officina: sostituire i file in `assets/img/` mantenendo lo stesso nome
+- Foto: quasi tutte sono fotogrammi dei video Instagram dell'officina e la foto dell'esterno (targhe sfocate). Resta generata con l'IA solo `clima.webp`
 
 ## Versione "cinema" (`cinema/`)
 Pagina separata e animata: scorrendo, un video generato con Higgsfield (5 immagini chiave e 4 transizioni MiniMax) viene riprodotto fotogramma per fotogramma su un canvas, con schede e punti sui reparti sopra.
