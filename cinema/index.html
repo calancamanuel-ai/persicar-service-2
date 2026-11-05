@@ -27,10 +27,10 @@
 
   <nav class="rail" aria-label="Capitoli">
     <button data-chapter="0"><span>Esterno</span></button>
-    <button data-chapter="1"><span>Officina</span></button>
-    <button data-chapter="2"><span>Reparti</span></button>
-    <button data-chapter="3"><span>Freni</span></button>
-    <button data-chapter="4"><span>Diagnosi</span></button>
+    <button data-chapter="1"><span>Ingresso</span></button>
+    <button data-chapter="2"><span>Postazioni</span></button>
+    <button data-chapter="3"><span>Motore</span></button>
+    <button data-chapter="4"><span>Officina</span></button>
   </nav>
 
   <main id="top">
@@ -39,7 +39,7 @@
       <div class="layer layer--hero" data-show="hero">
         <p class="status" id="status"><span class="status__dot"></span><span class="status__text">Lun–ven</span></p>
         <h1 class="hero__title"><span>La tua auto,</span><span>in mani <em>esperte</em>.</span></h1>
-        <p class="hero__lead">Officina multimarca a San Giovanni in Persiceto. Scorri ed entra.</p>
+        <p class="hero__lead">Via Cento 60, San Giovanni in Persiceto. Scorri ed entra in officina.</p>
         <div class="cta">
           <a class="btn btn--solid" href="tel:+390516871521">Chiama ora</a>
           <a class="btn btn--ghost js-wa" href="#" data-wa-text="Ciao, vorrei un preventivo per la mia auto.">Scrivi su WhatsApp</a>
@@ -50,36 +50,37 @@
       <div class="layer layer--card layer--right" data-show="inside">
         <p class="card__kicker">Via Cento 60</p>
         <h2>Dentro l'officina</h2>
-        <p>Auto e veicoli commerciali leggeri di tutte le marche. Ponte sollevatore, attrezzatura di diagnosi e un reparto gommista.</p>
+        <p>Appena entri, a destra c'è l'accettazione: qui ascoltiamo il problema e ti diamo un preventivo chiaro. Lavoriamo su auto e veicoli commerciali leggeri di tutte le marche.</p>
         <dl class="card__facts"><div><dt>4,8★</dt><dd>86 recensioni Google</dd></div><div><dt>Multimarca</dt><dd>auto e commerciali</dd></div></dl>
       </div>
 
       <div class="layer layer--map" data-show="map">
         <div class="map__title">
-          <p class="card__kicker">I reparti</p>
+          <p class="card__kicker">Le postazioni</p>
           <h2>Tutto sotto lo stesso tetto.</h2>
+          <p class="map__hint">Tocca un punto per sapere cosa facciamo lì.</p>
         </div>
-        <button class="spot" data-spot="0" data-x="0.20" data-y="0.43"><i></i><span><b>Gommista</b>Vendita, cambio stagionale, equilibratura</span></button>
-        <button class="spot" data-spot="1" data-x="0.50" data-y="0.37"><i></i><span><b>Meccanica</b>Tagliandi, freni, sospensioni</span></button>
-        <button class="spot" data-spot="2" data-x="0.74" data-y="0.35"><i></i><span><b>Elettrauto e diagnosi</b>Centraline, impianto elettrico, spie</span></button>
-        <button class="spot" data-spot="3" data-x="0.71" data-y="0.15"><i></i><span><b>Ricarica clima</b>Gas, perdite, igienizzazione</span></button>
-        <button class="spot" data-spot="4" data-x="0.27" data-y="0.60"><i></i><span><b>Accettazione</b>Preventivo chiaro prima di iniziare</span></button>
+        <button class="spot" data-spot="0" data-x="0.85" data-y="0.55" aria-haspopup="dialog"><i></i><span><b>Accettazione</b>Preventivo prima di iniziare</span></button>
+        <button class="spot" data-spot="1" data-x="0.62" data-y="0.42" aria-haspopup="dialog"><i></i><span><b>Tagliandi e motore</b>Ponte a forbice</span></button>
+        <button class="spot" data-spot="2" data-x="0.45" data-y="0.30" aria-haspopup="dialog"><i></i><span><b>Freni e sospensioni</b>Ponti a colonne</span></button>
+        <button class="spot" data-spot="3" data-x="0.30" data-y="0.20" aria-haspopup="dialog"><i></i><span><b>Gommista</b>Gomme e cerchi</span></button>
+        <button class="spot" data-spot="4" data-x="0.70" data-y="0.18" aria-haspopup="dialog"><i></i><span><b>Elettrauto e clima</b>Diagnosi e climatizzatore</span></button>
       </div>
 
-      <div class="layer layer--card layer--left" data-show="brake">
-        <p class="card__kicker">Freni</p>
-        <h2>Disco, pastiglie, pinza.</h2>
-        <p>Misuriamo il disco a ogni tagliando e cambiamo solo quello che serve. Rumori o vibrazioni in frenata? Passa a farli controllare.</p>
-        <a class="btn btn--solid js-wa" href="tel:+390516871521" data-fallback="tel" data-wa-text="Ciao, vorrei far controllare i freni della mia auto.">Prenota un controllo</a>
+      <div class="layer layer--card layer--left" data-show="engine">
+        <p class="card__kicker">Motore e tagliando</p>
+        <h2>Ogni tagliando,<br>fatto per bene.</h2>
+        <p>Olio e filtri giusti per il tuo motore, candele, cinghie e controlli previsti dal costruttore. Ti diciamo cosa abbiamo fatto e cosa potrà servire più avanti.</p>
+        <a class="btn btn--solid js-wa" href="tel:+390516871521" data-fallback="tel" data-wa-text="Ciao, vorrei prenotare un tagliando.">Prenota un tagliando</a>
       </div>
 
       <div class="layer layer--card layer--left" data-show="diag">
-        <p class="card__kicker">Elettrauto e diagnosi</p>
-        <h2>Prima la causa,<br>poi il ricambio.</h2>
-        <p>Spia accesa? Leggiamo le centraline e ti spieghiamo cosa c'è da fare, con un preventivo prima di iniziare.</p>
+        <p class="card__kicker">Persicar Service</p>
+        <h2>Dall'auto di tutti i giorni<br>alla sportiva.</h2>
+        <p>Officina multimarca e assistenza Renault. Raccontiamo i nostri lavori su Instagram: passa a vederli, o portaci la tua.</p>
         <div class="cta">
           <a class="btn btn--solid" href="tel:+390516871521">Chiama ora</a>
-          <a class="btn btn--ghost js-wa" href="#" data-wa-text="Ciao, ho una spia accesa sull'auto.">WhatsApp</a>
+          <a class="btn btn--ghost js-wa" href="#" data-wa-text="Ciao, vorrei un preventivo per la mia auto.">WhatsApp</a>
         </div>
       </div>
     </section>
@@ -121,6 +122,16 @@
       </footer>
     </section>
   </main>
+
+  <div class="spotpanel" id="spotpanel" role="dialog" aria-modal="false" aria-labelledby="sp-title" hidden>
+    <button class="spotpanel__close" type="button" aria-label="Chiudi">×</button>
+    <p class="card__kicker" id="sp-kicker"></p>
+    <h3 id="sp-title"></h3>
+    <p id="sp-text"></p>
+    <ul id="sp-list"></ul>
+    <p class="spotpanel__recent" id="sp-recent"></p>
+    <a class="btn btn--solid js-wa" id="sp-cta" href="tel:+390516871521" data-fallback="tel">Chiedi un preventivo</a>
+  </div>
 
   <div class="mbar" aria-label="Contatti rapidi">
     <a href="tel:+390516871521" class="mbar__call">Chiama</a>
