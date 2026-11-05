@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modello officina</title>
+<style>
+  :root { --bg: #15161a; --ink: #f2f2f0; --muted: #a5a6ad; --panel: rgba(20,21,26,0.88); }
+  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg: #eceae6; --ink: #1d1d20; --muted: #5e5f66; --panel: rgba(255,255,255,0.9); } }
+  :root[data-theme="light"] { --bg: #eceae6; --ink: #1d1d20; --muted: #5e5f66; --panel: rgba(255,255,255,0.9); }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 15px/1.4 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  .ui { position: fixed; left: 12px; top: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; pointer-events: none; }
+  .ui > * { pointer-events: auto; }
+  .ui h1 { font-size: 15px; margin: 0 8px 0 0; padding: 8px 12px; background: var(--panel); border-radius: 10px; }
+  .ui button { font: inherit; border: 1px solid rgba(128,128,128,0.35); background: var(--panel); color: var(--ink); padding: 8px 12px; border-radius: 10px; cursor: pointer; min-height: 40px; }
+  .ui button.on { outline: 2px solid #1fa35c; }
+  .hint { position: fixed; left: 12px; bottom: 12px; padding: 8px 12px; background: var(--panel); border-radius: 10px; color: var(--muted); font-size: 13px; }
+  .lbl { position: absolute; transform: translate(-50%, -100%); padding: 3px 7px; border-radius: 6px; background: rgba(0,0,0,0.72); color: #fff; font-size: 12px; white-space: nowrap; pointer-events: none; }
+  body.nolabels .lbl { display: none; }
+</style>
+</head>
+<body>
+<div class="ui">
+  <h1>Persicar Service · modello dell'officina</h1>
+  <button data-view="iso" class="on">Spaccato</button>
+  <button data-view="door">Dal portone</button>
+  <button data-view="top">Pianta</button>
+  <button data-view="out">Esterno</button>
+  <button id="lbl">Etichette</button>
+</div>
+<div class="hint">Trascina per ruotare · rotella o due dita per lo zoom</div>
+<div id="labels"></div>
+<script type="importmap">{ "imports": { "three": "../../assets/vendor/three/three.module.min.js", "three/addons/": "../../assets/vendor/three/addons/" } }</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+// Coordinate in metri dalla pianta: x lungo il capannone (0 = muro bagno/sgabuzzino), z = distanza dal muro di fondo (0) verso la facciata (13).
+const D = 13, HALL = 21.5, L = 26.5, WALL_H = 4.6, RIDGE = 6.2;
+const params = new URLSearchParams(location.search);
+if (params.get("labels") === "0") document.body.classList.add("nolabels");
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled = true;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x15161a);
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.9));
+const sun = new THREE.DirectionalLight(0xfff2e0, 1.6);
+sun.position.set(8, 20, 25); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -25, right: 25, top: 25, bottom: -25 });
+scene.add(sun);
+
+const M = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.7, metalness: 0.05, ...o });
+const mat = {
+  floor: M(0xb9876a), floorB: M(0x9a9996), wall: M(0xe9e3d8), pink: M(0xe0a58e), roof: M(0xa8452f),
+  room: M(0xf3efe8), red: M(0xc8252b, { roughness: 0.45 }), blue: M(0x2f55b8, { roughness: 0.5 }),
+  rubber: M(0x161616, { roughness: 0.95 }), grate: M(0x8b8f96, { metalness: 0.6, wireframe: true }),
+  tools: M(0xb5322f, { roughness: 0.5 }), toolsG: M(0x7d8087), door: M(0x9aa0a6, { metalness: 0.5 }),
+  glass: M(0x3a5f8a, { roughness: 0.2, metalness: 0.3 }), white: M(0xf4f4f2, { roughness: 0.35, metalness: 0.2 }),
+  grey: M(0x4b4f55, { roughness: 0.4, metalness: 0.3 }), silver: M(0xb8bcc2, { roughness: 0.35, metalness: 0.5 }),
+  machine: M(0x2b2e33, { roughness: 0.5 }), wood: M(0x8a6a48),
+};
+const P = (x, z) => new THREE.Vector3(x, 0, z);
+function box(w, h, d, m, x, y, z, parent = scene) {
+  const g = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
+  g.position.set(x, y, z); g.castShadow = g.receiveShadow = true; parent.add(g); return g;
+}
+const labels = [];
+function label(text, x, y, z) {
+  const el = document.createElement("div"); el.className = "lbl"; el.textContent = text;
+  document.getElementById("labels").appendChild(el); labels.push({ el, p: new THREE.Vector3(x, y, z) });
+}
+
+// Pavimento
+box(L + 3.5, 0.1, D, mat.floor, (L - 3.5) / 2, -0.05, D / 2);
+box(60, 0.05, 30, mat.floorB, L / 2, -0.12, D + 12);
+
+// Muri perimetrali (la facciata è un gruppo a parte, per poterla nascondere nello spaccato)
+const T = 0.3;
+box(L + 3.5, WALL_H, T, mat.wall, (L - 3.5) / 2, WALL_H / 2, -T / 2);           // fondo
+box(T, WALL_H, D, mat.wall, L + T / 2, WALL_H / 2, D / 2);                       // lato destro
+box(T, WALL_H, D, mat.wall, -3.5 - T / 2, WALL_H / 2, D / 2);                    // confine con la palestra
+const facade = new THREE.Group(); scene.add(facade);
+const fz = D + T / 2;
+box(16, WALL_H, T, mat.pink, 8 - 3.5 / 2 - 0.25, WALL_H / 2, fz, facade);          // da -3.5 a 16
+box(L - 21, WALL_H, T, mat.pink, 21 + (L - 21) / 2, WALL_H / 2, fz, facade);       // da 21 a 26.5
+box(5, WALL_H - 3.6, T, mat.pink, 18.5, 3.6 + (WALL_H - 3.6) / 2, fz, facade);     // sopra il portone
+for (const wx of [1.5, 5.5, 9.5, 13.2, 24]) box(2.4, 1.4, 0.08, mat.glass, wx, 2.6, fz + 0.16, facade);
+const slide = box(5, 3.6, 0.12, mat.door, 13.6, 1.8, fz + 0.3, facade);             // anta scorrevole aperta a sinistra
+// Tetto a falde (colmo parallelo alla facciata)
+const roof = new THREE.Group(); scene.add(roof);
+{
+  const W = L + 3.5 + 0.8, half = D / 2 + 0.6, rise = RIDGE - WALL_H, slope = Math.hypot(half, rise);
+  for (const s of [-1, 1]) {
+    const r = box(W, 0.18, slope, mat.roof, (L - 3.5) / 2, WALL_H + rise / 2, D / 2 + s * half / 2, roof);
+    r.rotation.x = s * Math.atan2(rise, half);
+  }
+}
+
+// Annesso: sgabuzzino e bagno (più stretto del capannone), porte vicine al muro in comune
+box(T, WALL_H, D - 1.6, mat.wall, -T / 2, WALL_H / 2, 1.6 + (D - 1.6) / 2).visible = false;
+const annexWall = (z0, z1) => box(0.15, 2.8, z1 - z0, mat.room, 0, 1.4, (z0 + z1) / 2);
+annexWall(1.6, 5.7); annexWall(6.6, 7.4); annexWall(8.3, D);
+box(3.5, 2.8, 0.15, mat.room, -1.75, 1.4, 1.6);
+box(3.5, 2.8, 0.15, mat.room, -1.75, 1.4, 7.0);
+box(3.5, 0.1, D - 1.6, mat.room, -1.75, 2.85, 1.6 + (D - 1.6) / 2);
+label("Sgabuzzino", -1.75, 3.2, 4.3); label("Bagno", -1.75, 3.2, 10);
+
+// Stanze a destra: sala attesa, ufficio, accettazione (porta laterale), con sottotetto gomme sopra la sala attesa
+const RX = HALL, RH = 2.8;
+const rw = (z0, z1) => box(0.15, RH, z1 - z0, mat.room, RX, RH / 2, (z0 + z1) / 2);
+rw(2.3, 3.4); rw(4.3, 10.8); rw(11.8, D);
+box(L - RX, RH, 0.15, mat.room, RX + (L - RX) / 2, RH / 2, 2.3);
+box(L - RX, RH, 0.15, mat.room, RX + (L - RX) / 2, RH / 2, 5.4);
+box(2.4, RH, 0.15, mat.room, RX + 1.2, RH / 2, 9.0); box(1.7, RH, 0.15, mat.room, RX + 4.15, RH / 2, 9.0);
+box(L - RX, 0.12, D - 2.3, mat.room, RX + (L - RX) / 2, RH + 0.06, 2.3 + (D - 2.3) / 2);
+// arredi stanze
+box(2.2, 0.8, 0.9, mat.wood, RX + 2.5, 0.4, 4.0); box(1.6, 0.75, 0.8, mat.wood, RX + 2.6, 0.4, 7.2); box(2.0, 1.0, 0.7, mat.wood, RX + 2.8, 0.5, 11.6);
+label("Sala d'attesa", RX + 2.5, 3.4, 3.9); label("Ufficio", RX + 2.5, 3.4, 7.2); label("Accettazione", RX + 2.5, 3.4, 11.2);
+// pneumatici nel sottotetto sopra la sala d'attesa (con ringhiera)
+for (let i = 0; i < 6; i++) for (let k = 0; k < 2; k++) {
+  const t = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.9, 20), mat.rubber);
+  t.position.set(RX + 0.7 + i * 0.75, RH + 0.12 + 0.45, 3.2 + k * 1.2); t.castShadow = true; scene.add(t);
+}
+box(L - RX, 0.9, 0.05, mat.silver, RX + (L - RX) / 2, RH + 0.6, 2.32);
+label("Sottotetto pneumatici", RX + 2.5, 4.5, 3.8);
+// scala a pioli tra sala attesa e muro di fondo
+{
+  const lx = 25.6, lz = 1.6;
+  for (const dx of [-0.25, 0.25]) box(0.06, RH + 0.9, 0.06, mat.silver, lx + dx, (RH + 0.9) / 2, lz);
+  for (let i = 0; i < 9; i++) box(0.5, 0.04, 0.04, mat.silver, lx, 0.35 + i * 0.36, lz);
+  label("Scala a pioli", lx, RH + 1.4, lz);
+}
+// strumenti nella fascia dietro la sala d'attesa
+box(2.4, 1.0, 0.6, mat.tools, RX + 1.6, 0.5, 0.45);
+
+// Muro di fondo: strumenti (tranne portone piccolo e postazione gomme)
+box(7.0, 1.0, 0.6, mat.tools, 3.5, 0.5, 0.45); box(7.0, 1.2, 0.05, mat.toolsG, 3.5, 1.9, 0.03);
+box(3.6, 1.0, 0.6, mat.tools, 12.0, 0.5, 0.45); box(3.6, 1.2, 0.05, mat.toolsG, 12.0, 1.9, 0.03);
+box(0.6, 1.0, 4.2, mat.tools, 0.45, 0.5, 2.1);
+label("Strumenti", 3.5, 2.8, 0.5);
+// portone piccolo verso il giardino interno
+box(2.8, 2.8, 0.1, mat.door, 8.6, 1.4, 0.02);
+label("Portone sul giardino", 8.6, 3.2, 0.3);
+
+// Postazione gomme: smontagomme ed equilibratrice lungo il muro di fondo
+function tyreChanger(x, z) {
+  box(1.0, 0.9, 1.1, mat.machine, x, 0.45, z);
+  const tt = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.08, 24), mat.silver); tt.position.set(x, 0.95, z); scene.add(tt);
+  box(0.15, 1.3, 0.15, mat.machine, x, 1.55, z - 0.45); box(0.1, 0.1, 0.7, mat.machine, x, 2.2, z - 0.15);
+}
+function balancer(x, z) {
+  box(0.9, 1.0, 0.8, mat.machine, x, 0.5, z);
+  const sh = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.6, 12), mat.silver); sh.rotation.x = Math.PI / 2; sh.position.set(x, 1.0, z + 0.7); scene.add(sh);
+  box(1.0, 0.6, 0.06, mat.silver, x, 1.3, z - 0.35);
+}
+tyreChanger(15.5, 1.0); balancer(18.0, 0.9);
+box(1.6, 1.0, 0.6, mat.tools, 20.2, 0.5, 0.45);
+label("Smontagomme", 15.5, 2.6, 1.0); label("Equilibratrice", 18.0, 2.0, 0.9);
+
+// Zona con grata e strumenti attaccati al suo lato destro
+{
+  const g0 = 0.9, g1 = 5.2, gz = D - 3.2;
+  const gm = new THREE.MeshStandardMaterial({ color: 0x9aa0a6, metalness: 0.6, roughness: 0.5, transparent: true, opacity: 0.45 });
+  box(g1 - g0, 2.4, 0.04, gm, (g0 + g1) / 2, 1.2, gz);
+  box(0.04, 2.4, D - gz, gm, g1, 1.2, gz + (D - gz) / 2);
+  box(0.6, 1.6, D - gz - 0.2, mat.tools, g1 + 0.35, 0.8, gz + (D - gz) / 2);
+  label("Zona con grata", (g0 + g1) / 2, 2.8, gz + 1.5); label("Strumenti", g1 + 0.35, 2.0, gz + 1.6);
+}
+
+// Auto generica: body lungo l'asse locale z, muso verso +z
+function car(color, len = 4.3, w = 1.8) {
+  const g = new THREE.Group();
+  const m = color === "white" ? mat.white : mat.grey;
+  box(w, 0.6, len, m, 0, 0.55, 0, g);
+  box(w - 0.15, 0.55, len * 0.48, m, 0, 1.1, -0.15, g);
+  box(w - 0.2, 0.42, len * 0.46, mat.glass, 0, 1.12, -0.15, g);
+  box(w - 0.3, 0.08, 0.05, M(0xffffcc, { emissive: 0xffffaa, emissiveIntensity: 0.6 }), 0, 0.72, len / 2 + 0.01, g);
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+    const wh = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.22, 20), mat.rubber);
+    wh.rotation.z = Math.PI / 2; wh.position.set(sx * (w / 2 - 0.05), 0.32, sz * (len / 2 - 0.75)); wh.castShadow = true; g.add(wh);
+  }
+  scene.add(g); return g;
+}
+// Ponte a 2 colonne: auto di traverso, muso verso la facciata (+z)
+function lift2(x, z, color, raise, name) {
+  for (const sx of [-1.55, 1.55]) {
+    box(0.35, 3.9, 0.45, mat.red, x + sx, 1.95, z);
+    box(0.7, 0.05, 0.7, mat.red, x + sx, 0.03, z);
+    for (const az of [-0.9, 0.9]) box(Math.abs(sx) - 0.5, 0.07, 0.12, mat.red, x + sx * 0.6, raise + 0.1, z + az);
+  }
+  const c = car(color); c.position.set(x, raise, z);
+  label(name, x, raise + 2.0, z);
+}
+lift2(4.9, 3.6, "grey", 1.6, "Ponte 1");
+lift2(12.0, 3.6, "white", 0.3, "Ponte 2");
+lift2(18.4, 5.4, "white", 0.25, "Ponte 3");
+// Ponte a forbice blu lungo la facciata: auto parallela al muro, muso verso sinistra (-x), ruote sospese sui tamponi
+{
+  const x = 10.6, z = D - 2.0, h = 1.1;
+  for (const dz of [-0.75, 0.75]) box(5.5, 0.14, 0.6, mat.blue, x, h, z + dz);
+  for (const s of [-1, 1]) { const b = box(5.8, 0.1, 0.12, mat.blue, x, h / 2, z); b.rotation.z = s * Math.atan2(h, 5.4); }
+  for (const dx of [-1.3, 1.3]) for (const dz of [-0.75, 0.75]) box(0.25, 0.22, 0.25, mat.rubber, x + dx, h + 0.18, z + dz);
+  const c = car("grey"); c.rotation.y = -Math.PI / 2; c.position.set(x, h + 0.3, z);
+  label("Ponte a forbice", x, h + 2.2, z);
+}
+label("Portone scorrevole", 18.5, 4.2, D + 0.4);
+
+// Viste
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 300);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+const views = {
+  iso:  { pos: [12, 26, 34], target: [11.5, 0, 6.5], fov: 40, cut: true },
+  door: { pos: [18.5, 1.6, 12.9], target: [18.5, 1.4, 0], fov: 34, cut: true, inside: true },
+  top:  { pos: [11.5, 48, 6.51], target: [11.5, 0, 6.5], fov: 35, cut: true },
+  out:  { pos: [18.5, 1.7, 30], target: [14, 2.2, D], fov: 45, cut: false },
+};
+function setView(name) {
+  const v = views[name];
+  camera.position.set(...v.pos); controls.target.set(...v.target); camera.fov = v.fov; camera.updateProjectionMatrix();
+  roof.visible = !v.cut;
+  document.getElementById("labels").style.visibility = name === "out" ? "hidden" : "";
+  facade.visible = !v.cut || !!v.inside;
+  document.querySelectorAll("[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === name));
+  controls.update();
+}
+document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => setView(b.dataset.view)));
+document.getElementById("lbl").addEventListener("click", () => document.body.classList.toggle("nolabels"));
+setView(params.get("view") || "iso");
+
+const v = new THREE.Vector3();
+function tick() {
+  controls.update();
+  renderer.render(scene, camera);
+  for (const l of labels) {
+    v.copy(l.p).project(camera);
+    const vis = v.z < 1 && Math.abs(v.x) < 1.05 && Math.abs(v.y) < 1.05;
+    l.el.style.display = vis ? "" : "none";
+    l.el.style.left = ((v.x + 1) / 2 * innerWidth) + "px"; l.el.style.top = ((1 - v.y) / 2 * innerHeight) + "px";
+  }
+  requestAnimationFrame(tick);
+}
+addEventListener("resize", () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+tick();
+window.__ready = true;
+</script>
+</body>
+</html>
