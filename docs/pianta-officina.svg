@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1330" height="820" viewBox="0 0 1330 820" font-family="Arial, sans-serif"><rect width="100%" height="100%" fill="#fbfaf7"/>
+<text x="60" y="44" font-size="26" font-weight="700" fill="#222">Persicar Service · pianta in scala (circa 30 × 13 m)</text>
+<text x="60" y="74" font-size="16" fill="#666">Metà nord del capannone. Ponti: 2 colonne ≈ 3,5 m, forbice ≈ 2,1 × 5,5 m. Auto ≈ 4,4 × 1,8 m. Portone stimato dalla foto ≈ 5 m.</text>
+<rect x="60.0" y="174.0" width="140.0" height="456.0" fill="#ece7df" stroke="#222" stroke-width="6"/>
+<line x1="60.0" y1="390.0" x2="200.0" y2="390.0" stroke="#222" stroke-width="5"/>
+<text x="68.0" y="278.0" font-size="15" fill="#555">sgabuzzino</text><text x="68.0" y="518.0" font-size="15" fill="#555">bagno</text>
+<text x="56.0" y="690.0" font-size="14" fill="#888">← palestra (altra metà)</text>
+<rect x="200.0" y="110" width="1060.0" height="520.0" fill="#efe9e1" stroke="#222" stroke-width="8"/>
+<rect x="194.0" y="338.0" width="12" height="36.0" fill="#fbfaf7" stroke="#c44" stroke-width="2"/>
+<rect x="194.0" y="406.0" width="12" height="36.0" fill="#fbfaf7" stroke="#c44" stroke-width="2"/>
+<rect x="204.0" y="114" width="272.0" height="24.0" fill="#a33" opacity="0.55"/>
+<rect x="612.0" y="114" width="136.00000000000006" height="24.0" fill="#a33" opacity="0.55"/>
+<rect x="411.0" y="502.0" width="28.0" height="124.0" fill="#a33" opacity="0.55"/>
+<text x="442.0" y="534.0" font-size="13" fill="#733">strumenti</text>
+<rect x="204.0" y="114" width="24.0" height="168.0" fill="#a33" opacity="0.55"/>
+<text x="232.0" y="166.0" font-size="13" fill="#733">strumenti</text>
+<rect x="488.0" y="103" width="112.0" height="14" fill="#fbfaf7" stroke="#c44" stroke-width="2"/>
+<text x="478.0" y="96" font-size="14" fill="#444">portone piccolo → giardino interno</text>
+<rect x="840.0" y="623.0" width="200.0" height="14" fill="#fbfaf7"/>
+<line x1="640.0" y1="642.0" x2="1040.0" y2="642.0" stroke="#c44" stroke-width="4"/>
+<rect x="640.0" y="636.0" width="200" height="10" fill="#c44" opacity="0.5"/>
+<text x="830.0" y="674.0" font-size="18" font-weight="700" fill="#222">PORTONE SCORREVOLE ≈ 5 m</text>
+<text x="320.0" y="674.0" font-size="15" fill="#666">facciata ovest · piazzale con parcheggio</text>
+<rect x="1060.0" y="202.0" width="200.0" height="428.0" fill="#f6efe6" stroke="#222" stroke-width="6"/>
+<line x1="1060.0" y1="326.0" x2="1260.0" y2="326.0" stroke="#222" stroke-width="6"/>
+<line x1="1060.0" y1="470.0" x2="1260.0" y2="470.0" stroke="#222" stroke-width="6"/>
+<rect x="1256.0" y="110" width="8" height="520.0" fill="#222"/>
+<text x="1132.0" y="150.0" font-size="13" text-anchor="middle" fill="#555">strumenti + scala a pioli</text><text x="1132.0" y="174.0" font-size="13" text-anchor="middle" fill="#555">per il sottotetto (gomme)</text>
+<line x1="1220.0" y1="118.0" x2="1220.0" y2="198.0" stroke="#777" stroke-width="3"/><line x1="1244.0" y1="118.0" x2="1244.0" y2="198.0" stroke="#777" stroke-width="3"/>
+<line x1="1220.0" y1="124.0" x2="1244.0" y2="124.0" stroke="#777" stroke-width="2"/>
+<line x1="1220.0" y1="135.2" x2="1244.0" y2="135.2" stroke="#777" stroke-width="2"/>
+<line x1="1220.0" y1="146.4" x2="1244.0" y2="146.4" stroke="#777" stroke-width="2"/>
+<line x1="1220.0" y1="157.6" x2="1244.0" y2="157.6" stroke="#777" stroke-width="2"/>
+<line x1="1220.0" y1="168.8" x2="1244.0" y2="168.8" stroke="#777" stroke-width="2"/>
+<line x1="1220.0" y1="180.0" x2="1244.0" y2="180.0" stroke="#777" stroke-width="2"/>
+<line x1="1220.0" y1="191.20000000000002" x2="1244.0" y2="191.20000000000002" stroke="#777" stroke-width="2"/>
+<rect x="1054.0" y="246.0" width="12" height="36.0" fill="#efe9e1" stroke="#c44" stroke-width="2"/>
+<rect x="1156.0" y="464.0" width="36.0" height="12" fill="#efe9e1" stroke="#c44" stroke-width="2"/>
+<rect x="1054.0" y="542.0" width="12" height="40.0" fill="#efe9e1" stroke="#c44" stroke-width="2"/>
+<text x="1160.0" y="270.0" font-size="16" font-weight="700" text-anchor="middle" fill="#333">SALA ATTESA</text>
+<text x="1160.0" y="406.0" font-size="16" font-weight="700" text-anchor="middle" fill="#333">UFFICIO</text>
+<text x="1160.0" y="562.0" font-size="16" font-weight="700" text-anchor="middle" fill="#333">ACCETTAZIONE</text>
+<text x="1160.0" y="294.0" font-size="12" text-anchor="middle" fill="#777">(sopra: sottotetto gomme)</text>
+<path d="M236.0 502.0 H408.0 V630.0" stroke="#888" stroke-width="6" fill="none" stroke-dasharray="12 7"/>
+<text x="248.0" y="574.0" font-size="15" fill="#666">zona con grata</text>
+<rect x="760.0" y="114" width="280" height="32.0" fill="#555" opacity="0.6"/>
+<text x="768.0" y="174.0" font-size="15" fill="#444">postazione gomme</text>
+<rect x="326.0" y="126.0" width="140.0" height="256.0" fill="none" stroke="#d22" stroke-width="1.5" stroke-dasharray="3 5"/>
+<rect x="360.0" y="166.0" width="72.0" height="176.0" rx="12" fill="#fff" stroke="#888" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M396.0 330.0 l-10 -16 h20z" fill="#777"/>
+<rect x="324.0" y="242.0" width="24.0" height="24.0" fill="#d22"/>
+<rect x="444.0" y="242.0" width="24.0" height="24.0" fill="#d22"/>
+<rect x="610.0" y="126.0" width="140.0" height="256.0" fill="none" stroke="#d22" stroke-width="1.5" stroke-dasharray="3 5"/>
+<rect x="644.0" y="166.0" width="72.0" height="176.0" rx="12" fill="#fff" stroke="#888" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M680.0 330.0 l-10 -16 h20z" fill="#777"/>
+<rect x="608.0" y="242.0" width="24.0" height="24.0" fill="#d22"/>
+<rect x="728.0" y="242.0" width="24.0" height="24.0" fill="#d22"/>
+<rect x="866.0" y="198.0" width="140.0" height="256.0" fill="none" stroke="#d22" stroke-width="1.5" stroke-dasharray="3 5"/>
+<rect x="900.0" y="238.0" width="72.0" height="176.0" rx="12" fill="#fff" stroke="#888" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M936.0 402.0 l-10 -16 h20z" fill="#777"/>
+<rect x="863.9999999999999" y="314.0" width="24.0" height="24.0" fill="#d22"/>
+<rect x="983.9999999999999" y="314.0" width="24.0" height="24.0" fill="#d22"/>
+<rect x="514.0" y="508.0" width="220.0" height="24.0" fill="#3550c8"/>
+<rect x="514.0" y="568.0" width="220.0" height="24.0" fill="#3550c8"/>
+<rect x="536.0" y="514.0" width="176.0" height="72.0" rx="12" fill="#fff" stroke="#888" stroke-width="2" stroke-dasharray="6 4"/>
+<path d="M547.0 550.0 l16 -10 v20z" fill="#777"/>
+<circle cx="940.0" cy="726.0" r="16" fill="#1fa35c"/><text x="940.0" y="732.0" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">1</text>
+<circle cx="940.0" cy="582.0" r="16" fill="#1fa35c"/><text x="940.0" y="588.0" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">2</text>
+<line x1="60" y1="780.0" x2="260" y2="780.0" stroke="#222" stroke-width="4"/><text x="60" y="804.0" font-size="15">5 m</text>
+<g font-size="15" fill="#333"><rect x="340" y="770.0" width="14" height="14" fill="#d22"/><text x="360" y="782.0">colonne ponte rosso (3 ponti)</text>
+<rect x="620" y="772.0" width="40" height="10" fill="#3550c8"/><text x="668" y="782.0">pedane forbice</text>
+<path d="M868 784.0 l-9 -14 h18z" fill="#777"/><text x="880" y="782.0">muso auto</text>
+<circle cx="1040.0" cy="777.0" r="9" fill="#1fa35c"/><text x="1056.0" y="782.0">camera</text></g>
+</svg>
